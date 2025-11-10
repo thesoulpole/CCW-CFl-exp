@@ -1,0 +1,88 @@
+{
+  "name": "nextjs-login-tiles-app",
+  "version": "1.0.0",
+  "description": "A beautiful, modern Next.js application featuring user authentication, interactive tile selection, and responsive design with TypeScript and Tailwind CSS. Includes comprehensive testing with 90%+ coverage.",
+  "private": false,
+  "main": "src/app/layout.tsx",
+  "types": "src/types/index.d.ts",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "prepublishOnly": "npm run test && npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/nextjs-login-tiles-app.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yourusername/nextjs-login-tiles-app/issues"
+  },
+  "homepage": "https://github.com/yourusername/nextjs-login-tiles-app#readme",
+  "keywords": [
+    "nextjs",
+    "react",
+    "typescript",
+    "tailwind-css",
+    "authentication",
+    "login",
+    "tiles",
+    "responsive-design",
+    "modern-ui",
+    "jest",
+    "testing",
+    "app-router",
+    "next-app",
+    "frontend",
+    "web-app"
+  ],
+  "author": {
+    "name": "Your Name",
+    "email": "your.email@example.com",
+    "url": "https://yourwebsite.com"
+  },
+  "contributors": [],
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  },
+  "files": [
+    "src",
+    "public",
+    "README.md",
+    "LICENSE",
+    "CHANGELOG.md",
+    "next.config.ts",
+    "tailwind.config.ts",
+    "tsconfig.json",
+    "postcss.config.js"
+  ],
+  "dependencies": {
+    "next": "^16.0.1",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.1.17",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.0",
+    "@testing-library/user-event": "^14.6.1",
+    "@types/jest": "^30.0.0",
+    "@types/node": "^24.10.0",
+    "@types/react": "^19.2.2",
+    "@types/react-dom": "^19.2.2",
+    "autoprefixer": "^10.4.21",
+    "eslint": "^9.39.1",
+    "eslint-config-next": "^16.0.1",
+    "jest": "^30.2.0",
+    "jest-environment-jsdom": "^30.2.0",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^4.1.17",
+    "typescript": "^5.9.3"
+  }
+}
