@@ -3,10 +3,11 @@
 import { useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Image from "next/image";
+import { useAuth } from "../context/AuthContext";
 
 // TypeScript interface for tile data
 interface TileData {
-  id: number;
+  id: string;
   title: string;
   description: string;
   image: string;
@@ -15,8 +16,7 @@ interface TileData {
 export default function ResultPage() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
-  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const { isAuthenticated, isLoading, logout } = useAuth();
   const [tileData, setTileData] = useState<TileData | null>(null);
   const [mounted, setMounted] = useState<boolean>(false);
 
@@ -25,37 +25,24 @@ export default function ResultPage() {
     setMounted(true);
   }, []);
 
-  // Authentication check
+  // Authentication check - redirect if not authenticated
   useEffect(() => {
-    const checkAuth = () => {
-      // Check if user is authenticated (checking localStorage)
-      const authStatus = localStorage.getItem("isAuthenticated");
-
-      if (authStatus === "true") {
-        setIsAuthenticated(true);
-      } else {
-        // Redirect to login if not authenticated
-        router.push("/");
-        return;
-      }
-
-      setIsLoading(false);
-    };
-
-    checkAuth();
-  }, [router]);
+    if (!isLoading && !isAuthenticated) {
+      router.push("/");
+    }
+  }, [isLoading, isAuthenticated, router]);
 
   // Parse tile data from URL params
   useEffect(() => {
     if (isAuthenticated) {
-      const id = searchParams.get("id");
+      const tileId = searchParams.get("tileId");
       const title = searchParams.get("title");
       const description = searchParams.get("description");
       const image = searchParams.get("image");
 
-      if (id && title && description && image) {
+      if (tileId && title && description && image) {
         setTileData({
-          id: parseInt(id),
+          id: tileId,
           title,
           description,
           image,
@@ -67,13 +54,6 @@ export default function ResultPage() {
   // Handle back to tiles navigation
   const handleBackToTiles = () => {
     router.push("/tiles");
-  };
-
-  // Handle logout
-  const handleLogout = () => {
-    localStorage.removeItem("isAuthenticated");
-    localStorage.removeItem("username");
-    router.push("/");
   };
 
   // Show loading state
@@ -211,7 +191,7 @@ export default function ResultPage() {
 
               {/* Logout button */}
               <button
-                onClick={handleLogout}
+                onClick={logout}
                 className="group relative px-8 py-4 bg-white text-gray-700 font-semibold rounded-xl border-2 border-gray-300 overflow-hidden shadow-lg hover:shadow-2xl transform hover:scale-105 transition-all duration-300"
               >
                 <span className="relative z-10 flex items-center justify-center gap-2">
