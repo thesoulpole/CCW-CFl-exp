@@ -37,3 +37,4 @@ yarn-error.log*
 .claude-flow/
 .hive-mind/
 .swc/
+.swarm/
